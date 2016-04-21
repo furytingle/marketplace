@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    
-</div>
+POSHEL NAHUI OTSUDA
 @endsection
