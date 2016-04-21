@@ -21,8 +21,17 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'web'], function () {
 
-    Route::group(['middleware' => 'admin'], function () {
-        Route::get('/dashboard', 'LoginController@dashboard');
+    //ADMIN ROUTES GROUP (ADMIN ONLY ACCESS)
+    Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+
+        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'LoginController@dashboard']);
+
+        //USERS CRUD
+        Route::resource('user', 'UserController');
+
+        //CATEGORY CRUD
+        Route::resource('category', 'CategoryController');
+
     });
 
 });

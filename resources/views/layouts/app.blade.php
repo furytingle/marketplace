@@ -51,9 +51,7 @@
                     <li>
                         @if (Auth::check())
                             @if (Auth::user()->isAdmin())
-                                <a href="{{ url('/dashboard') }}">
-                                    Dashboard
-                                </a>
+                               {{ link_to_route('dashboard', 'Dashboard', array(), array()) }}
                             @endif
                         @endif
                     </li>

@@ -15,12 +15,9 @@
 
     @yield('style')
 
-    <script type="text/javascript" src="{{ URL::asset('public/js/angular.min.js')  }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('public/js/jquery-1.12.1.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ URL::asset('public/js/script.js') }}"></script>
-
     @yield('script')
+
+    <script type="text/javascript" src="{{ URL::asset('resources/assets/js/jquery-1.12.3.min.js') }}"></script>
 
 </head>
 <body>
