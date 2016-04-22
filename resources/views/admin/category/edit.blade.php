@@ -12,19 +12,19 @@
         </div>
     @endif
 
-    {{ Form::open(['route' => 'admin.category.store', 'method' => 'post', 'role' => 'form']) }}
+    {{ Form::model($category, ['method' => 'PATCH', 'route' => ['admin.category.update', $category->id]]) }}
 
         <div class="form-group">
-            {{ Form::label('name', 'Category name') }}
-            {{ Form::text('name', '', ['class' => 'form-control']) }}
+            {{ Form::label('name', 'Category name', ['class' => 'control-label']) }}
+            {{ Form::text('name', null, ['class' => 'form-control']) }}
         </div>
 
         <div class="form-group">
             {{ Form::label('description', 'Description') }}
-            {{ Form::textarea('description', '', ['class' => 'form-control']) }}
+            {{ Form::textarea('description', null, ['class' => 'form-control']) }}
         </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
+        {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 

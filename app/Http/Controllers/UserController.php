@@ -88,4 +88,15 @@ class UserController extends Controller
     {
         //
     }
+
+    public function approve($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->approved = !$user->approved;
+
+        $user->save();
+
+        return redirect()->back();
+    }
 }

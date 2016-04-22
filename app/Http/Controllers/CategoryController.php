@@ -72,7 +72,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('admin.category.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -84,7 +88,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $data = $request->all();
+        $category->fill($data)->save();
+
+        $request->session()->flash('flash_message', 'Category updated');
+
+        return redirect()->back();
     }
 
     /**
@@ -93,8 +108,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        $request->session()->flash('flash_message', 'Category deleted');
+
+        return redirect()->back();
     }
 }
