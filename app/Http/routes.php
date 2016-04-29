@@ -10,11 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
@@ -22,10 +17,22 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'web'], function () {
 
 });
+//REDIRECT IF AUTHENTICATED
+Route::get('/', ['middleware' => 'store', function() {
+    return redirect()->route('store.index');
+}]);
+
+//STORE INDEX & EDIT
+Route::get('/store', ['as' => 'store.index', 'uses' => 'StoreController@index']);
+
+Route::get('/store/edit', ['as' => 'store.edit', 'uses' => 'StoreController@edit']);
+
+Route::post('/store/update', ['as' => 'store.update', 'uses' => 'StoreController@update']);
 
 //ADMIN ROUTES GROUP (ADMIN ONLY ACCESS)
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
+    //ADMIN DASHBOARD
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'LoginController@dashboard']);
 
     //USERS CRUD

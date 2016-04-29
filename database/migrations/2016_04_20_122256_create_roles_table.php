@@ -18,13 +18,14 @@ class CreateRolesTable extends Migration
         });
 
         Schema::table('users', function ($table) {
-            $table->integer('role_id')
+            $table->integer('roleID')
                 ->unsigned()
                 ->default(1);
 
-            $table->foreign('role_id')
+            $table->foreign('roleID')
                 ->references('id')
                 ->on('roles')
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
     }
@@ -37,7 +38,7 @@ class CreateRolesTable extends Migration
     public function down()
     {
         Schema::table('users', function ($table) {
-            $table->dropForeign(['role_id']);
+            $table->dropForeign(['roleID']);
         });
 
         Schema::drop('roles');
