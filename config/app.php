@@ -159,6 +159,9 @@ return [
         // HTML & FORMS
         Collective\Html\HtmlServiceProvider::class,
 
+        //MongoDB
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+
     ],
 
     /*

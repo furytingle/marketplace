@@ -48,6 +48,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li> @if (Auth::check())
+                            <a href="{{ url('/store') }}">Store</a>
+                         @endif
+                    </li>
                     <li>
                         @if (Auth::check())
                             @if (Auth::user()->isAdmin())

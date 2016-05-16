@@ -13,6 +13,9 @@
             <li>
                 {{ link_to_route('admin.category.index', 'Categories', [], []) }}
             </li>
+            <li>
+                {{ link_to_route('admin.floor.index', 'Floors', [], []) }}
+            </li>
             <li><a href="#">Another link</a></li>
         </ul>
     </div>

@@ -16,11 +16,10 @@ class RedirectIfNoStore
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->hasStore()) {
-            return $next($request);
+        if (Auth::check()) {
+            return redirect()->route('store.index', ['link' => Auth::user()->store->link]);
         }
-        else {
-            return response()->view('welcome');
-        }
+
+        return $next($request);
     }
 }

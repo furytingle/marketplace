@@ -17,15 +17,19 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'web'], function () {
 
 });
+
+Route::get('/', function() {
+    return view('welcome');
+});
+
 //REDIRECT IF AUTHENTICATED
-Route::get('/', ['middleware' => 'store', function() {
-    return redirect()->route('store.index');
-}]);
+Route::get('/store', ['middleware' => 'store', function() {
 
+} ]);
 //STORE INDEX & EDIT
-Route::get('/store', ['as' => 'store.index', 'uses' => 'StoreController@index']);
+Route::get('/store/{link}', ['as' => 'store.index', 'uses' => 'StoreController@index']);
 
-Route::get('/store/edit', ['as' => 'store.edit', 'uses' => 'StoreController@edit']);
+Route::get('/settings', ['as' => 'store.settings', 'uses' => 'StoreController@edit']);
 
 Route::post('/store/update', ['as' => 'store.update', 'uses' => 'StoreController@update']);
 
@@ -42,4 +46,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     //CATEGORY CRUD
     Route::resource('category', 'CategoryController');
 
+    //FLOOR CRUD
+    Route::resource('floor', 'FloorController');
+
 });
+
+Route::get('/mongo', 'StoreController@monTest');

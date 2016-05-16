@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Traits\LinkTrait;
 use App\User;
 use App\Store;
 use Validator;
@@ -23,6 +24,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use LinkTrait;
 
     /**
      * Where to redirect users after login / registration.
@@ -71,8 +73,11 @@ class AuthController extends Controller
         ]);
 
         $store = new Store;
-
         $store->userID = $user->id;
+
+        //Generate unique link to make guest be able to find it
+        $store->link = $this->makeLink($user->id);
+
         $store->save();
 
         return $user;

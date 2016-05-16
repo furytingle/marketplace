@@ -35,31 +35,8 @@ class User extends Authenticatable
         return $st;
     }
 
-    public function hasStore()
-    {
-        $store = $this->findStore();
-
-        $st = true;
-        /*if ($store) {
-            $st = true;
-        }*/
-
-        return $st;
-    }
-
-    public function findStore()
+    public function store()
     {
         return $this->hasOne('App\Store', 'userID');
-    }
-
-    public function link()
-    {
-        $store = $this->findStore();
-        if ($store) {
-            return $store->link;
-        }
-        else {
-            return "ThereWillBeLink";
-        }
     }
 }

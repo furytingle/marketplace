@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
-    public $timestamps = false;
-
     protected $table = 'stores';
 
     public $incrementing = false;
@@ -16,7 +14,7 @@ class Store extends Model
     protected $fillable = [
         'link', 'brandName',
         'photo', 'poster',
-        'contactData', 'countryID'
+        'contactData', 'countryID',
     ];
 
 }
