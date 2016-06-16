@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Floor;
 use App\Http\Traits\LinkTrait;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class StoreController extends Controller
 
     public function index($link)
     {
-        $store = Store::where('link', $link)->first();
+        $store = Store::where('link', $link)->firstOrFail();
 
         return view('public.store.index', [
             'store' => $store
@@ -31,17 +32,22 @@ class StoreController extends Controller
     {
         $store = Store::where('userID', Auth::user()->id)->first();
 
+        $floors = Floor::all();
+
         return view('public.store.edit', [
-            'store' => $store
+            'store' => $store,
+            'floors' => $floors
         ]);
     }
 
     public function update(Request $request)
     {
-        $store = Store::where('userID', Auth::user()->id)->first();
+        $userID = Auth::user()->id;
+
+        $store = Store::where('userID', $userID)->first();
 
         $this->validate($request, [
-            'link' => 'max:25|min:3|unique:stores',
+            'link' => 'min:3|max:25|unique:stores,link,' . $userID . ',userID',
             'brandName' => 'max:50',
             'contactData' => 'max:150',
             'photo' => 'image|max:2500',

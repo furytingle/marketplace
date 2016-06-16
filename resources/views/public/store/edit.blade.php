@@ -24,6 +24,15 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label" for="floor-select">Floor</label>
+            <select name="floorID" id="floor-select">
+                @foreach($floors as $floor)
+                    <option value="{{ $floor->id }}">{{ $floor->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             {{ Form::label('photo', 'Photo') }}
             {{ Form::file('photo') }}
             @if ($store->photo)

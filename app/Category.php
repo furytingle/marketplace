@@ -10,6 +10,12 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'floorID'
     ];
+
+    public function floor()
+    {
+        return $this->belongsTo('App\Floor', 'floorID');
+    }
 }

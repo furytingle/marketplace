@@ -11,6 +11,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Categories</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -19,6 +20,11 @@
                     <td>{{ $floor->id }}</td>
                     <td>{{ $floor->name }}</td>
                     <td>{{ $floor->description }}</td>
+                    <td>
+                        @foreach ($floor->categories as $cat)
+                            <p>{{ $cat->name }}</p>
+                        @endforeach
+                    </td>
                     <td>
                         {{ link_to_route('admin.floor.edit', 'Edit', ['id' => $floor->id], ['class' => 'btn btn-info']) }}
                     </td>

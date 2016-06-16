@@ -11,4 +11,14 @@ class Floor extends Model
     protected $fillable = [
         'name', 'description'
     ];
+
+    public function categories()
+    {
+        return $this->hasMany('App\Category', 'floorID');
+    }
+
+    public function stores()
+    {
+        return $this->hasMany('App\Store', 'floorID');
+    }
 }

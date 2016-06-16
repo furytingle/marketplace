@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 
+use App\Floor;
+
 use App\Http\Requests;
 
 class CategoryController extends Controller
@@ -30,7 +32,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $floors = Floor::all();
+
+        return view('admin.category.create', [
+            'floors' => $floors
+        ]);
     }
 
     /**
@@ -74,8 +80,11 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
+        $floors = Floor::all();
+
         return view('admin.category.edit', [
-            'category' => $category
+            'category' => $category,
+            'floors' => $floors
         ]);
     }
 

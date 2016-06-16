@@ -12,26 +12,38 @@
 */
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
 Route::group(['middleware' => 'web'], function () {
 
 });
 
-Route::get('/', function() {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'index', 'uses' => 'MarketController@index']);
 
 //REDIRECT IF AUTHENTICATED
 Route::get('/store', ['middleware' => 'store', function() {
 
 } ]);
-//STORE INDEX & EDIT
-Route::get('/store/{link}', ['as' => 'store.index', 'uses' => 'StoreController@index']);
+
+//STORE INDEX & SETTINGS
 
 Route::get('/settings', ['as' => 'store.settings', 'uses' => 'StoreController@edit']);
 
-Route::post('/store/update', ['as' => 'store.update', 'uses' => 'StoreController@update']);
+Route::group(['prefix' => 'store', 'as' => 'store.'], function () {
+
+    Route::get('/{link}', ['as' => 'index', 'uses' => 'StoreController@index']);
+
+    Route::post('/update', ['as' => 'update', 'uses' => 'StoreController@update']);
+});
+
+Route::group(['prefix' => 'store/{link}/products', 'as' => 'product.'], function () {
+
+    Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+
+    Route::get('/new', ['as' => 'create', 'uses' => 'ProductController@create']);
+
+    Route::post('/store', ['as' => 'store', 'uses' => 'ProductController@store']);
+});
+
+Route::post('/imageupload', ['as' => 'imageUpload', 'uses' => 'ProductController@imageAJAXUpload']);
 
 //ADMIN ROUTES GROUP (ADMIN ONLY ACCESS)
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {

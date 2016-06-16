@@ -14,7 +14,7 @@ class Store extends Model
     protected $fillable = [
         'link', 'brandName',
         'photo', 'poster',
-        'contactData', 'countryID',
+        'contactData', 'floorID'
     ];
 
 }

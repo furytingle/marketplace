@@ -15,6 +15,14 @@
 
     @yield('style')
 
+</head>
+<body>
+    @include('layouts.panel')
+    <div class="container">
+        @yield('content')
+    </div>
+
+
     @yield('script')
 
     <script type="text/javascript" src="{{ URL::asset('resources/assets/js/jquery-1.12.3.min.js') }}"></script>
@@ -22,12 +30,5 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="{{ URL::asset('resources/assets/js/script.js') }}"></script>
-
-</head>
-<body>
-    @include('layouts.panel')
-    <div class="container">
-        @yield('content')
-    </div>
 
 </body>

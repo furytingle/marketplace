@@ -11,6 +11,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Floor</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -19,6 +20,7 @@
                     <td>{{ $cat->id }}</td>
                     <td>{{ $cat->name }}</td>
                     <td>{{ $cat->description }}</td>
+                    <td>{{ $cat->floor->name }}</td>
                     <td>
                         {{ link_to_route('admin.category.edit', 'Edit', ['id' => $cat->id], ['class' => 'btn btn-info']) }}
                     </td>

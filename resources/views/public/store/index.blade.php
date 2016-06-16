@@ -2,10 +2,6 @@
 
 @section('content')
 
-    @if (Auth::check())
-        {{ link_to_route('store.settings', 'Settings', [], ['class' => 'btn btn-primary']) }}
-    @endif
-
     <h4>{{ $store->link }}</h4>
 
     <h5>{{ $store->brandName }}</h5>
