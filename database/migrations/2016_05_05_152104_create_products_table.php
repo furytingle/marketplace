@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('userID')->unsigned();
+            $table->integer('userId')->unsigned();
             $table->integer('type')->unsigned(); // 1 - product, 2 - service
             $table->string('name', 100);
             $table->text('description')->nullable();
@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
         });
 
         Schema::table('products', function ($table) {
-            $table->foreign('userID')
+            $table->foreign('userId')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
@@ -38,7 +38,7 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function ($table) {
-            $table->dropForeign(['userID']);
+            $table->dropForeign(['userId']);
         });
 
         Schema::drop('products');

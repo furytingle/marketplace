@@ -11,11 +11,11 @@ class Category extends Model
     protected $fillable = [
         'name',
         'description',
-        'floorID'
+        'floorId'
     ];
 
     public function floor()
     {
-        return $this->belongsTo('App\Floor', 'floorID');
+        return $this->belongsTo('App\Floor', 'floorId');
     }
 }

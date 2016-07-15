@@ -73,7 +73,7 @@ class AuthController extends Controller
         ]);
 
         $store = new Store;
-        $store->userID = $user->id;
+        $store->userId = $user->id;
 
         //Generate unique link to make guest be able to find it
         $store->link = $this->makeLink($user->id);

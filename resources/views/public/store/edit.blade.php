@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label class="control-label" for="floor-select">Floor</label>
-            <select name="floorID" id="floor-select">
+            <select name="floorId" id="floor-select">
                 @foreach($floors as $floor)
                     <option value="{{ $floor->id }}">{{ $floor->name }}</option>
                 @endforeach

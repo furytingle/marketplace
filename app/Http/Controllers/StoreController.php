@@ -30,7 +30,7 @@ class StoreController extends Controller
 
     public function edit()
     {
-        $store = Store::where('userID', Auth::user()->id)->first();
+        $store = Store::where('userId', Auth::user()->id)->first();
 
         $floors = Floor::all();
 
@@ -42,12 +42,12 @@ class StoreController extends Controller
 
     public function update(Request $request)
     {
-        $userID = Auth::user()->id;
+        $userId = Auth::user()->id;
 
-        $store = Store::where('userID', $userID)->first();
+        $store = Store::where('userId', $userId)->first();
 
         $this->validate($request, [
-            'link' => 'min:3|max:25|unique:stores,link,' . $userID . ',userID',
+            'link' => 'min:3|max:25|unique:stores,link,' . $userId . ',userId',
             'brandName' => 'max:50',
             'contactData' => 'max:150',
             'photo' => 'image|max:2500',

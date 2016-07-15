@@ -20,17 +20,17 @@ class CreateFloorsTable extends Migration
         });
 
         Schema::table('stores', function ($table) {
-            $table->integer('floorID')->nullable()->unsigned();
+            $table->integer('floorId')->nullable()->unsigned();
 
-            $table->foreign('floorID')
+            $table->foreign('floorId')
                 ->references('id')
                 ->on('floors');
         });
 
         Schema::table('categories', function ($table) {
-            $table->integer('floorID')->unsigned();
+            $table->integer('floorId')->unsigned();
 
-            $table->foreign('floorID')
+            $table->foreign('floorId')
                 ->references('id')
                 ->on('floors');
         });
@@ -44,11 +44,11 @@ class CreateFloorsTable extends Migration
     public function down()
     {
         Schema::table('stores', function ($table) {
-            $table->dropForeign(['floorID']);
+            $table->dropForeign(['floorId']);
         });
 
         Schema::table('categories', function ($table) {
-            $table->dropForeign(['floorID']);
+            $table->dropForeign(['floorId']);
         });
 
         Schema::drop('floors');

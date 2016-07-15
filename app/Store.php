@@ -9,12 +9,12 @@ class Store extends Model
     protected $table = 'stores';
 
     public $incrementing = false;
-    protected $primaryKey = 'userID';
+    protected $primaryKey = 'userId';
 
     protected $fillable = [
         'link', 'brandName',
         'photo', 'poster',
-        'contactData', 'floorID'
+        'contactData', 'floorId'
     ];
 
 }

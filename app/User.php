@@ -28,7 +28,7 @@ class User extends Authenticatable
     {
         $st = false;
 
-        if ($this->roleID == 2) {
+        if ($this->roleId == 2) {
             $st = true;
         }
 
@@ -37,6 +37,6 @@ class User extends Authenticatable
 
     public function store()
     {
-        return $this->hasOne('App\Store', 'userID');
+        return $this->hasOne('App\Store', 'userId');
     }
 }

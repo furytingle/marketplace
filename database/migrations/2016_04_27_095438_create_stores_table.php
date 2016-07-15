@@ -13,20 +13,20 @@ class CreateStoresTable extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->integer('userID')->unique()->unsigned();
+            $table->integer('userId')->unique()->unsigned();
             $table->string('link', 25)->nullable();
             $table->string('brandName', 50)->nullable();
             $table->string('contactData', 150)->nullable();
             $table->text('description')->nullable();
             $table->string('photo')->nullable();
             $table->string('poster')->nullable();
-            $table->integer('countryID')->unsigned()->nullable();
-            $table->integer('cityID')->unsigned()->nullable();
+            $table->integer('countryId')->unsigned()->nullable();
+            $table->integer('cityId')->unsigned()->nullable();
             $table->timestamps();
         });
 
         Schema::table('stores', function ($table) {
-            $table->foreign('userID')
+            $table->foreign('userId')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
@@ -42,7 +42,7 @@ class CreateStoresTable extends Migration
     public function down()
     {
         Schema::table('stores', function ($table) {
-            $table->dropForeign(['userID']);
+            $table->dropForeign(['userId']);
         });
 
         Schema::drop('stores');

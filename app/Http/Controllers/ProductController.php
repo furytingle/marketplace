@@ -11,25 +11,11 @@ use App\Http\Requests;
 class ProductController extends Controller
 {
 
-    // DEVELOP LATER
-    protected function mongoTest()
-    {
-        $client = new \MongoDB\Client("mongodb://localhost:27017");
-
-        $collection = $client->demo->beers;
-
-        $result = $collection->findOne(['name' => 'Hinterland']);
-
-        echo $result['brewery'];
-    }
-
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth', ['except' => 'index']);
     }
 
-    public function index($link)
-    {
+    public function index($link) {
         $store = Store::where('link', $link)->first();
         $products = Product::where('userID', $store->userID);
 
@@ -38,13 +24,11 @@ class ProductController extends Controller
         ]);
     }
 
-    public function create()
-    {
+    public function create() {
         return view('public.product.create');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required',
             'description' => 'max:625',
@@ -55,8 +39,7 @@ class ProductController extends Controller
 
     }
 
-    public function imageAJAXUpload(Request $request)
-    {
+    public function imageAJAXUpload(Request $request) {
         $path = 'uploads/';
 
         $response = array();

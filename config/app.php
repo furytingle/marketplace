@@ -160,7 +160,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         //MongoDB
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        //Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],
 

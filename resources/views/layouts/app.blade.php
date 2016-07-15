@@ -49,7 +49,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li> @if (Auth::check())
+                    <li> @if (Auth::check() && Auth::user()->store)
                             <a href="{{ url('/store/' . Auth::user()->store->link) }}">Store</a>
                          @endif
                     </li>
@@ -79,9 +79,11 @@
                                 <li>
                                     {{ link_to_route('store.settings', 'Settings', [], []) }}
                                 </li>
-                                <li>
-                                    {{ link_to_route('product.index', 'Products', ['link' => Auth::user()->store->link], []) }}
-                                </li>
+                                @if (Auth::user()->store)
+                                    <li>
+                                        {{ link_to_route('product.index', 'Products', ['link' => Auth::user()->store->link], []) }}
+                                    </li>
+                                @endif
                             </ul>
                         </li>
                     @endif
@@ -105,7 +107,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+    <!-- jQuery based script(may be removed later) -->
     <script type="text/javascript" src="{{ URL::asset('resources/assets/js/script.js') }}"></script>
+
+    <!-- Hardest decision ever, what JS framework i should use ? -->
+    <script type="text/javascript" src="{{ URL::asset('resources/assets/js/angular/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('resources/assets/js/vue/vue.min.js') }}"></script>
+    <!-- App.js -->
+    <script type="text/javascript" src="{{ URL::asset('public/js/app.js') }}"></script>
+
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

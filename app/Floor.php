@@ -14,11 +14,11 @@ class Floor extends Model
 
     public function categories()
     {
-        return $this->hasMany('App\Category', 'floorID');
+        return $this->hasMany('App\Category', 'floorId');
     }
 
     public function stores()
     {
-        return $this->hasMany('App\Store', 'floorID');
+        return $this->hasMany('App\Store', 'floorId');
     }
 }
