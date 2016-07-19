@@ -5,6 +5,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePropertiesTable extends Migration
 {
+    
+    public $table = 'properties';
+    
     /**
      * Run the migrations.
      *
@@ -12,14 +15,14 @@ class CreatePropertiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('properties', function (Blueprint $table) {
+        Schema::create($this->table, function (Blueprint $table) {
             $table->increments('id');
             $table->integer('productId');
             $table->string('name', 50);
             $table->string('value', 255);
         });
 
-        Schema::table('properties', function ($table) {
+        Schema::table($this->table, function ($table) {
             $table->foreign('productId')
                 ->references('id')
                 ->on('products')
@@ -35,10 +38,10 @@ class CreatePropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::table('properties', function ($table) {
+        Schema::table($this->table, function ($table) {
             $table->dropForeign(['productId']);
         });
 
-        Schema::drop('properties');
+        Schema::drop($this->table);
     }
 }

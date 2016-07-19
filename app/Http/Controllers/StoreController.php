@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Floor;
-use App\Http\Traits\LinkTrait;
+use App\Http\Traits\StringGenerator;
 use Illuminate\Http\Request;
 
 use App\Store;
@@ -12,15 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
-    use LinkTrait;
+    use StringGenerator;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth', ['except' => 'index']);
     }
 
-    public function index($link)
-    {
+    public function index($link) {
         $store = Store::where('link', $link)->firstOrFail();
 
         return view('public.store.index', [
@@ -28,8 +26,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function edit()
-    {
+    public function edit() {
         $store = Store::where('userId', Auth::user()->id)->first();
 
         $floors = Floor::all();
@@ -40,8 +37,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         $userId = Auth::user()->id;
 
         $store = Store::where('userId', $userId)->first();
@@ -57,16 +53,13 @@ class StoreController extends Controller
         $data = $request->except(['photo', 'poster']);
         $data['link'] = trim($data['link']);
 
-        $path = 'uploads/';
+        $path = 'upload/';
 
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-
             $photo = $request->file('photo');
-
             $photoName = $photo->getClientOriginalName();
-
             $photoStatus = $photo->move($path . 'photo', $photoName);
-
+            
             if ($photoStatus) {
                 $store->photo = $photoName;
             }
@@ -92,8 +85,7 @@ class StoreController extends Controller
         return redirect()->back();
     }
 
-    public function monTest()
-    {
+    public function monTest() {
         $store = new Store();
 
         $store->setConnection('mongodb');

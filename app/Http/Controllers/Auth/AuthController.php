@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Traits\LinkTrait;
+use App\Http\Traits\StringGenerator;
 use App\User;
 use App\Store;
 use Validator;
@@ -24,7 +24,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    use LinkTrait;
+    use StringGenerator;
 
     /**
      * Where to redirect users after login / registration.

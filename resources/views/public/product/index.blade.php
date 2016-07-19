@@ -15,6 +15,11 @@
                 {{ $product->description }}
             </p>
         </div>
+        @if ($product->getImages())
+            @foreach($product->getImages() as $image)
+                <img src="{{ URL::to('/upload/product/' . $image->value) }}">
+            @endforeach
+        @endif
     @endforeach
 
 @endsection

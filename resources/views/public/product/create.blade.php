@@ -14,10 +14,10 @@
         <div class="form-group">
 
             <div class="radio">
-                <label><input type="radio" name="type" checked>Product</label>
+                <label><input type="radio" name="type" checked value="1">Product</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="type">Service</label>
+                <label><input type="radio" name="type" value="2">Service</label>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             {{ Form::label('images', 'Images') }}
-            {{ Form::file('images', ['multiple', 'name' => 'images[]']) }}
+            {{ Form::file('images', ['name' => 'image']) }}
         </div>
 
         <div id="image-preload">

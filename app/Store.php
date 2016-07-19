@@ -16,5 +16,8 @@ class Store extends Model
         'photo', 'poster',
         'contactData', 'floorId'
     ];
-
+    
+    public function products() {
+        return $this->hasMany('App\Product', 'storeId');
+    }
 }
