@@ -28,19 +28,18 @@ Route::get('/store', ['middleware' => 'store', function() {
 Route::get('/settings', ['as' => 'store.settings', 'uses' => 'StoreController@edit']);
 
 Route::group(['prefix' => 'store', 'as' => 'store.'], function () {
-
     Route::get('/{link}', ['as' => 'index', 'uses' => 'StoreController@index']);
-
     Route::post('/update', ['as' => 'update', 'uses' => 'StoreController@update']);
 });
 
-Route::group(['prefix' => 'store/{link}/products', 'as' => 'product.'], function () {
-
-    Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
-
+Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
     Route::get('/new', ['as' => 'create', 'uses' => 'ProductController@create']);
-
     Route::post('/store', ['as' => 'store', 'uses' => 'ProductController@store']);
+});
+
+Route::group(['prefix' => 'store/{link}/products', 'as' => 'public.product.'], function () {
+    Route::get('/', ['as' => 'index', 'uses' => 'ProductController@index']);
+    Route::get('/{id}', ['as' => 'view', 'uses' => 'ProductController@view']);
 });
 
 Route::post('/imageupload', ['as' => 'imageUpload', 'uses' => 'ProductController@imageAJAXUpload']);
@@ -63,4 +62,4 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
 });
 
-Route::get('/mongo', 'StoreController@monTest');
+//Route::get('/mongo', 'StoreController@monTest');

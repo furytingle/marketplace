@@ -25,5 +25,5 @@
 @endsection
 
 @section('right-content')
-    {{ link_to_route('product.create', 'New', ['link' => Auth::user()->store->link], ['class' => 'btn btn-success']) }}
+    {{ link_to_route('product.create', 'New', [], ['class' => 'btn btn-success']) }}
 @endsection
